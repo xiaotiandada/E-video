@@ -1,23 +1,28 @@
 <template>
     <div id="wrapper">
-        <main>
-            <el-row>
-                <el-col :span="24">
-                    24
-                </el-col>
-            </el-row>
+                <div class="videoheader">
+                    header
+                </div>
 
-            <el-row>
-                <el-col :span="12">12</el-col>
-                <el-col :span="12">12</el-col>
-            </el-row>
-        </main>
+
+                <div class="videoMain">
+                    main
+                </div>
     </div>
 </template>
 
 <script>
   export default {
-    methods: {}
+    data () {
+      return {
+        activeIndex: '1'
+      }
+    },
+    methods: {
+      handleSelect (key, keyPath) {
+        console.log(key, keyPath)
+      }
+    }
   }
 </script>
 
@@ -26,8 +31,46 @@
 <style lang="scss">
     @import "~normalize.css";
     @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
-
+    html,body{
+        width: 100%;
+        height: 100%;
+    }
     body {
         font-family: 'Source Sans Pro', sans-serif;
+    }
+#wrapper{
+    background: #eee;
+    height: 100%;
+}
+    .videoMain{
+        /*display: -ms-flexbox;*/
+        display: flex;
+        /*-ms-flex-wrap: wrap;*/
+        flex-wrap: wrap;
+        /*-ms-flex-align: center;*/
+        align-items: center;
+        justify-content: center;
+        /*-ms-flex-pack: justify;*/
+        /*justify-content: space-between;*/
+
+        background: #00feff;
+        color: #fff;
+        height: calc(100% - 60px);
+
+    }
+    .videoheader{
+        /*display: -ms-flexbox;*/
+        display: flex;
+        /*-ms-flex-wrap: wrap;*/
+        flex-wrap: wrap;
+        /*-ms-flex-align: center;*/
+        align-items: center;
+        justify-content: center;
+        /*-ms-flex-pack: justify;*/
+        /*justify-content: space-between;*/
+
+        background: #333;
+        color: #fff;
+        height: 60px;
     }
 </style>

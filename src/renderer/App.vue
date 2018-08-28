@@ -10,6 +10,10 @@
   }
 </script>
 
-<style>
+<style scoped>
   /* CSS */
+  #app{
+    width: 100%;
+    height: 100%;
+  }
 </style>
