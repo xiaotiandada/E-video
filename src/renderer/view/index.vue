@@ -53,7 +53,7 @@
         /*-ms-flex-pack: justify;*/
         /*justify-content: space-between;*/
 
-        background: #00feff;
+        background: #007aff;
         color: #fff;
         height: calc(100% - 60px);
 
