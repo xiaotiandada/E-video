@@ -69,7 +69,7 @@
         /*-ms-flex-pack: justify;*/
         /*justify-content: space-between;*/
 
-        background: #333;
+        background: #009fff;
         color: #fff;
         height: 60px;
     }
