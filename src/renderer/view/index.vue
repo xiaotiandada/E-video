@@ -19,14 +19,21 @@
                     </div>
                 </div>
                 <div class="videoMain">
-                    <div class="videoMainContent"></div>
+                    <div class="videoMainContent">
+                        <d-player id="dplayer" video="https://video-dev.github.io/streams/x36xhzz/x36xhzz.m3u8"></d-player>
+                    </div>
                     <div class="videoMainList"></div>
                 </div>
     </div>
 </template>
 
 <script>
+  import VueDPlayer from 'vue-dplayer'
+  import 'vue-dplayer/dist/vue-dplayer.css'
   export default {
+    components: {
+      'd-player': VueDPlayer
+    },
     data () {
       return {
         activeIndex: '1',
@@ -36,6 +43,9 @@
     methods: {
       handleSelect (key, keyPath) {
         console.log(key, keyPath)
+      },
+      play () {
+        console.log('play callback')
       }
     }
   }
