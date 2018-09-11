@@ -57,6 +57,7 @@
   },
   "dependencies": {
     "axios": "^0.16.1",
+    "dplayer": "^1.24.0",
     "element-ui": "^2.4.6",
     "node-sass": "^4.9.3",
     "normalize.css": "^8.0.0",
