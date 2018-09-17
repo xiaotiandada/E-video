@@ -30,9 +30,14 @@
 <script>
   import VueDPlayer from 'vue-dplayer'
   import 'vue-dplayer/dist/vue-dplayer.css'
+
+  import movieApi from '@/service/movieApi'
   export default {
     components: {
       'd-player': VueDPlayer
+    },
+    created () {
+      this.getMovieReleased()
     },
     data () {
       return {
@@ -59,6 +64,15 @@
       },
       play () {
         console.log('play callback')
+      },
+      async getMovieReleased () {
+        await movieApi.getReleased('上海', 0, 100)
+          .then(function (response) {
+            console.log(response)
+          })
+          .catch(function (err) {
+            console.log(err)
+          })
       }
     }
   }
