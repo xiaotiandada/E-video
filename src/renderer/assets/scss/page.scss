@@ -13,8 +13,6 @@ body {
   height: 100%;
 }
 .wrapper{
-  width: 1200px;
-  margin: 20px auto;
 }
 
 .music-mv{
@@ -22,6 +20,7 @@ body {
   height: 188px;
   border-radius: 3px;
   overflow: hidden;
+  margin: auto;
   transition: all 0.3s ease;
 
   -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=10, Direction=0, Color=#EEEEEE)";/*IE 8*/

@@ -1,23 +1,28 @@
 
 <template>
     <div class="wrapper">
-        <div class="music-mv">
-            <div class="music-mv-img">
+        <el-row>
+            <el-col :span="6">
+                <div class="music-mv">
+                    <div class="music-mv-img">
                 <span class="music-mv-play-count">
                     22788
                 </span>
-                <a href="">
-                    <img src="http://p1.music.126.net/YIqV5eBxgaZ9Ony1CQ6xiQ==/109951163552777017.jpg" alt="">
-                </a>
-                <span class="music-mv-img-title">
+                        <a href="">
+                            <img src="http://p1.music.126.net/YIqV5eBxgaZ9Ony1CQ6xiQ==/109951163552777017.jpg" alt="">
+                        </a>
+                        <span class="music-mv-img-title">
                     那英献声电视剧《天坑鹰猎》片尾曲
                 </span>
-            </div>
-            <div class="music-mv-detail">
-                <span class="music-md-title">雪国远方</span>
-                <span class="music-mv-name">那英</span>
-            </div>
-        </div>
+                    </div>
+                    <div class="music-mv-detail">
+                        <span class="music-md-title">雪国远方</span>
+                        <span class="music-mv-name">那英</span>
+                    </div>
+                </div>
+            </el-col>
+        </el-row>
+
     </div>
 </template>
 
