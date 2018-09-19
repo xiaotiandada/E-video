@@ -2,7 +2,7 @@ import axios from 'axios'
 
 export default () => {
   return axios.create({
-    baseURL: 'https://api.douban.com/v2/movie',
-    headers: {'Access-Control-Allow-Origin': '*'}
+    baseURL: 'http://123.207.60.132:3000',
+    timeout: 1000
   })
 }

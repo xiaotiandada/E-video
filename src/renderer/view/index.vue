@@ -2,22 +2,24 @@
 <template>
     <div class="wrapper">
         <el-row>
-            <el-col :span="6">
+            <el-col
+                    :span="6"
+                    v-for="(mvItem, mvIndex) in mvList"
+                    :key="mvIndex"
+            >
                 <div class="music-mv">
                     <div class="music-mv-img">
-                <span class="music-mv-play-count">
-                    22788
-                </span>
+                        <span class="music-mv-play-count">
+                            22788
+                        </span>
                         <a href="">
-                            <img src="http://p1.music.126.net/YIqV5eBxgaZ9Ony1CQ6xiQ==/109951163552777017.jpg" alt="">
+                            <img :src="mvItem.cover" :alt="mvItem.briefDesc">
                         </a>
-                        <span class="music-mv-img-title">
-                    那英献声电视剧《天坑鹰猎》片尾曲
-                </span>
+                        <span class="music-mv-img-title">{{mvItem.briefDesc}}</span>
                     </div>
                     <div class="music-mv-detail">
-                        <span class="music-md-title">雪国远方</span>
-                        <span class="music-mv-name">那英</span>
+                        <span class="music-md-title">{{mvItem.name}}</span>
+                        <span class="music-mv-name">{{mvItem.artistName}}</span>
                     </div>
                 </div>
             </el-col>
@@ -36,7 +38,7 @@
       'd-player': VueDPlayer
     },
     created () {
-      // this.getMovieReleased()
+      this.getMovieReleased()
     },
     data () {
       return {
@@ -54,7 +56,8 @@
               link: 'https://github.com/xiaotiandada'
             }
           ]
-        }
+        },
+        mvList: []
       }
     },
     methods: {
@@ -65,9 +68,13 @@
         console.log('play callback')
       },
       async getMovieReleased () {
-        await movieApi.getReleased('上海', 0, 100)
+        let _this = this
+        await movieApi.getReleased()
           .then(function (response) {
-            console.log(response)
+            let dataMv = response.data
+            if (response.status === 200 && dataMv.code === 200) {
+              _this.mvList = dataMv.data
+            }
           })
           .catch(function (err) {
             console.log(err)
