@@ -1,31 +1,53 @@
 
 <template>
     <div class="wrapper">
-        <div
-                class="music-mv"
-                v-for="(mvItem, mvIndex) in mvList"
-                :key="mvIndex"
-                @click="toggleInMvPlayer(mvIndex)"
-        >
-            <div class="music-mv-img">
+        <div class="header">
+            <div class="logo">
+                <h1>网易云Mv</h1>
+            </div>
+            <div class="status">
+                <a href="javascript:void (0);">
+                    <i class="el-icon-minus"></i>
+                </a>
+                <a href="javascript:void (0);">
+                    <i class="el-icon-rank"></i>
+                </a>
+                <a href="javascript:void (0);">
+                    <i class="el-icon-close"></i>
+                </a>
+            </div>
+        </div>
+        <div class="main">
+            <el-scrollbar style="height: 100%;">
+                <div class="main-mv">
+                    <div
+                            class="music-mv"
+                            v-for="(mvItem, mvIndex) in mvList"
+                            :key="mvIndex"
+                            @click="toggleInMvPlayer(mvIndex)"
+                    >
+                        <div class="music-mv-img">
                 <span class="music-mv-play-count">
                     22788
                 </span>
-                <a
-                        href="javascript:void(0);"
-                >
-                    <img :src="mvItem.cover" :alt="mvItem.briefDesc">
-                </a>
-                <span class="music-mv-img-title">{{mvItem.briefDesc}}</span>
-            </div>
-            <div class="music-mv-detail">
-                <span class="music-md-title">{{mvItem.name}}</span>
-                <span class="music-mv-name">{{mvItem.artistName}}</span>
-            </div>
+                            <a
+                                    href="javascript:void(0);"
+                            >
+                                <img :src="mvItem.cover" :alt="mvItem.briefDesc">
+                            </a>
+                            <span class="music-mv-img-title">{{mvItem.briefDesc}}</span>
+                        </div>
+                        <div class="music-mv-detail">
+                            <span class="music-md-title">{{mvItem.name}}</span>
+                            <span class="music-mv-name">{{mvItem.artistName}}</span>
+                        </div>
+                    </div>
+                </div>
+            </el-scrollbar>
         </div>
 
         <div class="mv-player" v-if="toggleMvPlayer">
-            <div class="mv-close" @click="closeMvPlayer">X</div>
+            <div class="mv-close" @click="closeMvPlayer"><i class="el-icon-close"></i></div>
             <d-player class="d-player" @play="play" :options="options"></d-player>
         </div>
 
