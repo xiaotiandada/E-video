@@ -13,6 +13,9 @@ body {
   height: 100%;
 }
 .wrapper{
+  width: 1080px;
+  height: 100%;
+  margin: 0 auto;
 }
 
 .music-mv{
@@ -20,7 +23,8 @@ body {
   height: 188px;
   border-radius: 3px;
   overflow: hidden;
-  margin: auto;
+  margin: 15px 10px;
+  float: left;
   transition: all 0.3s ease;
 
   -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=10, Direction=0, Color=#EEEEEE)";/*IE 8*/
@@ -34,11 +38,10 @@ body {
     height: 140px;
     overflow: hidden;
     position: relative;
-    background-size: cover;
     img {
-      height: 100%;
+      width: 100%;
     }
-    span.music-mv-play-count {
+    .music-mv-play-count {
       position: absolute;
       top: 0;
       right: 10px;
@@ -47,14 +50,19 @@ body {
       line-height: 32px;
     }
 
-    span.music-mv-img-title {
+    .music-mv-img-title {
+      width: 90%;
+      display: inline-block;
       position: absolute;
       bottom: 0;
       left: 0;
       font-size: 12px;
       color: #fff;
-      line-height: 32px;
-      padding-left: 6px;
+      line-height: 20px;
+      padding: 0 0 10px 10px;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
     }
   }
   .music-mv-detail {
@@ -66,12 +74,18 @@ body {
       -ms-word-break: break-all;
       word-break: break-all;
     }
-    span.music-md-title{
+    .music-md-title{
       font-size: 13px;
       padding: 10px 0 6px 0;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
     }
-    span.music-mv-name{
+    .music-mv-name{
       font-size: 12px;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
     }
   }
 
@@ -80,3 +94,36 @@ body {
     transform: translate3d(0, -2px, 0);
   }
 }
+
+.mv-player{
+  position: fixed;
+  background-color: rgba(0,0,0,.8);
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  .mv-close{
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 30px;
+    height: 30px;
+    background-color: #fff;
+    border-radius: 50%;
+    line-height: 30px;
+    text-align: center;
+    color: #000;
+    cursor: pointer;
+  }
+  .d-player{
+    position: absolute;
+    top: 50%;
+    height: 600px;
+    margin-top: -250px;
+    z-index: 999;
+    background: #fff;
+    border-radius: 3px;
+    overflow: hidden;
+  }
+}
+

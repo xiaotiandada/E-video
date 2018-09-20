@@ -1,29 +1,33 @@
 
 <template>
     <div class="wrapper">
-        <el-row>
-            <el-col
-                    :span="6"
-                    v-for="(mvItem, mvIndex) in mvList"
-                    :key="mvIndex"
-            >
-                <div class="music-mv">
-                    <div class="music-mv-img">
-                        <span class="music-mv-play-count">
-                            22788
-                        </span>
-                        <a href="">
-                            <img :src="mvItem.cover" :alt="mvItem.briefDesc">
-                        </a>
-                        <span class="music-mv-img-title">{{mvItem.briefDesc}}</span>
-                    </div>
-                    <div class="music-mv-detail">
-                        <span class="music-md-title">{{mvItem.name}}</span>
-                        <span class="music-mv-name">{{mvItem.artistName}}</span>
-                    </div>
-                </div>
-            </el-col>
-        </el-row>
+        <div
+                class="music-mv"
+                v-for="(mvItem, mvIndex) in mvList"
+                :key="mvIndex"
+                @click="toggleInMvPlayer(mvIndex)"
+        >
+            <div class="music-mv-img">
+                <span class="music-mv-play-count">
+                    22788
+                </span>
+                <a
+                        href="javascript:void(0);"
+                >
+                    <img :src="mvItem.cover" :alt="mvItem.briefDesc">
+                </a>
+                <span class="music-mv-img-title">{{mvItem.briefDesc}}</span>
+            </div>
+            <div class="music-mv-detail">
+                <span class="music-md-title">{{mvItem.name}}</span>
+                <span class="music-mv-name">{{mvItem.artistName}}</span>
+            </div>
+        </div>
+
+        <div class="mv-player" v-if="toggleMvPlayer">
+            <div class="mv-close" @click="closeMvPlayer">X</div>
+            <d-player class="d-player" @play="play" :options="options"></d-player>
+        </div>
 
     </div>
 </template>
@@ -57,7 +61,8 @@
             }
           ]
         },
-        mvList: []
+        mvList: [],
+        toggleMvPlayer: false
       }
     },
     methods: {
@@ -79,6 +84,12 @@
           .catch(function (err) {
             console.log(err)
           })
+      },
+      toggleInMvPlayer (mvIndex) {
+        this.toggleMvPlayer = true
+      },
+      closeMvPlayer () {
+        this.toggleMvPlayer = false
       }
     }
   }
