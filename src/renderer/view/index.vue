@@ -47,7 +47,9 @@
         </div>
 
         <div class="mv-player" v-if="toggleMvPlayer">
-            <div class="mv-close" @click="closeMvPlayer"><i class="el-icon-close"></i></div>
+            <div class="mv-close" @click="closeMvPlayer">
+                <i class="el-icon-close"></i>
+            </div>
             <d-player class="d-player" @play="play" :options="options"></d-player>
         </div>
 
