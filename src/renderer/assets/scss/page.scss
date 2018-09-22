@@ -172,12 +172,14 @@ button {
     top: 0;
     width: 30px;
     height: 30px;
-    background-color: #fff;
-    border-radius: 50%;
     line-height: 30px;
     text-align: center;
-    color: #000;
     cursor: pointer;
+    i{
+      color: #fff;
+      font-weight: bold;
+      font-size: 16px;
+    }
   }
   .d-player{
     position: absolute;
