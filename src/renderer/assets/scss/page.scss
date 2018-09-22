@@ -37,7 +37,14 @@ button {
     float: left;
     margin-left: 10px;
     -webkit-app-region: no-drag;
+    img {
+      height: 22px;
+      float: left;
+      margin-top: 14px;
+      margin-right: 4px;
+    }
     h1 {
+      float: left;
       font-size: 16px;
       color: #fff;
       font-weight: 400;

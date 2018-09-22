@@ -3,6 +3,7 @@
     <div class="wrapper">
         <div class="header">
             <div class="logo">
+                <img src="../assets/img/logo.png" alt="logo">
                 <h1>网易云Mv</h1>
             </div>
             <div class="status">
