@@ -38,12 +38,14 @@ button {
     margin-left: 10px;
     -webkit-app-region: no-drag;
     img {
+      display: inline-block;
       height: 22px;
       float: left;
       margin-top: 14px;
       margin-right: 4px;
     }
     h1 {
+      display: inline-block;
       float: left;
       font-size: 16px;
       color: #fff;
