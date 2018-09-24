@@ -1,7 +1,7 @@
 'use strict'
 
 import { app, BrowserWindow } from 'electron'
-
+const ipcMain = require('electron').ipcMain
 /**
  * Set `__static` path to static files in production
  * https://simulatedgreg.gitbooks.io/electron-vue/content/en/using-static-assets.html
@@ -46,6 +46,14 @@ app.on('activate', () => {
   if (mainWindow === null) {
     createWindow()
   }
+})
+
+/**
+ *
+ */
+ipcMain.on('close', function (event, arg) {
+  console.log(arg)
+  event.sender.send('close', 'pong')
 })
 
 /**

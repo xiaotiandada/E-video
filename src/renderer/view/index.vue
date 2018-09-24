@@ -7,7 +7,7 @@
                 <h1>网易云Mv</h1>
             </div>
             <div class="status">
-                <a href="javascript:void (0);">
+                <a href="javascript:void (0);" type="close" @click="winClose">
                     <i class="el-icon-minus"></i>
                 </a>
                 <a href="javascript:void (0);">
@@ -62,6 +62,8 @@
   import 'vue-dplayer/dist/vue-dplayer.css'
 
   import movieApi from '@/service/movieApi'
+
+  const {ipcRenderer: ipc} = require('electron')
   export default {
     components: {
       'd-player': VueDPlayer
@@ -115,6 +117,10 @@
       },
       closeMvPlayer () {
         this.toggleMvPlayer = false
+      },
+      winClose () {
+        ipc.send('close')
+        console.log('close')
       }
     }
   }
