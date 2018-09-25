@@ -21,10 +21,9 @@ function createWindow () {
    */
   mainWindow = new BrowserWindow({
     height: 710,
-    useContentSize: true,
     width: 1200,
-    frame: false,
-    transparent: true
+    useContentSize: true,
+    frame: false
   })
 
   mainWindow.loadURL(winURL)
@@ -49,13 +48,21 @@ app.on('activate', () => {
 })
 
 /**
- *
+ * 模拟 最小 放大 还原 关闭 事件
  */
-ipcMain.on('close', function (event, arg) {
-  console.log(arg)
-  event.sender.send('close', 'pong')
+ipcMain.on('window-min', () => {
+  mainWindow.minimize()
 })
-
+ipcMain.on('win-enlarge-or-narrow', () => {
+  if (mainWindow.isMaximized()) {
+    mainWindow.unmaximize()
+  } else {
+    mainWindow.maximize()
+  }
+})
+ipcMain.on('window-close', () => {
+  mainWindow.close()
+})
 /**
  * Auto Updater
  *

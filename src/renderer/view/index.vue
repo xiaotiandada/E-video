@@ -7,13 +7,13 @@
                 <h1>网易云Mv</h1>
             </div>
             <div class="status">
-                <a href="javascript:void (0);" type="close" @click="winClose">
+                <a href="javascript:void (0);" @click="winMin">
                     <i class="el-icon-minus"></i>
                 </a>
-                <a href="javascript:void (0);">
+                <a href="javascript:void (0);" @click="winEnlargeOrNarrow">
                     <i class="el-icon-rank"></i>
                 </a>
-                <a href="javascript:void (0);">
+                <a href="javascript:void (0);" @click="winClose">
                     <i class="el-icon-close"></i>
                 </a>
             </div>
@@ -118,9 +118,14 @@
       closeMvPlayer () {
         this.toggleMvPlayer = false
       },
+      winMin () {
+        ipc.send('window-min')
+      },
+      winEnlargeOrNarrow () {
+        ipc.send('win-enlarge-or-narrow')
+      },
       winClose () {
-        ipc.send('close')
-        console.log('close')
+        ipc.send('window-close')
       }
     }
   }
