@@ -47,11 +47,13 @@
             </el-scrollbar>
         </div>
 
-        <div class="mv-player" v-if="toggleMvPlayer">
-            <div class="mv-close" @click="closeMvPlayer">
-                <i class="el-icon-close"></i>
+        <div class="mv-player" v-if="toggleMvPlayer" @click="closeMvPlayer">
+            <div class="mv-player-main" @click.stop="">
+                <div class="mv-close" @click="closeMvPlayer">
+                    <i class="el-icon-close"></i>
+                </div>
+                <d-player class="d-player" @play="play" :options="options"></d-player>
             </div>
-            <d-player class="d-player" @play="play" :options="options"></d-player>
         </div>
 
     </div>

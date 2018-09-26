@@ -71,6 +71,7 @@ button {
       padding: 0;
       font-size: 16px;
       font-weight: 400;
+      outline: none;
     }
   }
 }
@@ -177,30 +178,34 @@ button {
   left: 0;
   .mv-close{
     position: absolute;
-    right: 0;
-    top: 0;
+    right: -30px;
+    top: -5px;
     width: 30px;
     height: 30px;
     line-height: 30px;
     text-align: center;
     cursor: pointer;
     i{
-      color: #fff;
+      color: #a9a9a9;
       font-weight: bold;
-      font-size: 16px;
+      font-size: 20px;
+      transition: all .3s;
+      &:hover {
+        color: #f2f2f2;
+        transform: scale(1.01);
+      }
     }
   }
-  .d-player{
+  .mv-player-main{
     position: absolute;
     top: 50%;
     left: 50%;
     width: 900px;
-    height: 500px;
     margin: -250px 0 0 -450px;
-    z-index: 999;
-    background: #fff;
+  }
+  .d-player{
+    width: 100%;
     border-radius: 3px;
-    overflow: hidden;
   }
 }
 
