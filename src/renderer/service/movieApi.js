@@ -6,7 +6,11 @@ export default {
    * @param limit
    * @returns {*}
    */
-  getReleased (limit = 30) {
-    return Api().get(`/mv/first?limit=${limit}`)
+  getTopMv (limit = 30, offset = 0) {
+    // return Api().get(`/mv/first?limit=${limit}`)
+    return Api().get(`/top/mv?limit=${limit}&offset=${offset}`)
+  },
+  getMvId (id) {
+    return Api().get(`/mv?mvid=${id}`)
   }
 }

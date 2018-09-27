@@ -25,7 +25,7 @@
                             class="music-mv"
                             v-for="(mvItem, mvIndex) in mvList"
                             :key="mvIndex"
-                            @click="toggleInMvPlayer(mvIndex)"
+                            @click="toggleInMvPlayer(mvIndex, mvItem.id)"
                     >
                         <div class="music-mv-img">
                 <span class="music-mv-play-count">
@@ -47,7 +47,7 @@
             </el-scrollbar>
         </div>
 
-        <div class="mv-player" v-if="toggleMvPlayer" @click="closeMvPlayer">
+        <div class="mv-player" v-show="toggleMvPlayer" @click="closeMvPlayer">
             <div class="mv-player-main" @click.stop="">
                 <div class="mv-close" @click="closeMvPlayer">
                     <i class="el-icon-close"></i>
@@ -75,11 +75,9 @@
     },
     data () {
       return {
-        activeIndex: '1',
-        headerSearch: '',
         options: {
           video: {
-            url: 'http://static.smartisanos.cn/common/video/t1-ui.mp4',
+            url: 'http://vodkgeyttp8.vod.126.net/cloudmusic/2428/mv/f9fc/19797ae5a5ec9849a0e48a019ec985cc.mp4?wsSecret=a9880eea8d00458c706b000c0effd4d1&wsTime=1538059457',
             pic: 'http://static.smartisanos.cn/pr/img/video/video_03_cc87ce5bdb.jpg'
           },
           autoplay: false,
@@ -95,30 +93,45 @@
       }
     },
     methods: {
-      handleSelect (key, keyPath) {
-        console.log(key, keyPath)
-      },
       play () {
         console.log('play callback')
       },
       async getMovieReleased () {
         let _this = this
-        await movieApi.getReleased()
+        await movieApi.getTopMv(30, 1)
           .then(function (response) {
             let dataMv = response.data
             if (response.status === 200 && dataMv.code === 200) {
               _this.mvList = dataMv.data
+              console.log(_this.mvList)
             }
           })
           .catch(function (err) {
             console.log(err)
           })
       },
-      toggleInMvPlayer (mvIndex) {
+      toggleInMvPlayer (mvIndex, mvId) {
+        console.log(mvIndex)
         this.toggleMvPlayer = true
+        this.getMvId(mvId)
       },
       closeMvPlayer () {
         this.toggleMvPlayer = false
+      },
+      getMvId (mvId) {
+        let _this = this
+        movieApi.getMvId(mvId)
+          .then(function (response) {
+            console.log(response)
+            let dataMv = response.data
+            if (response.status === 200 && dataMv.code === 200) {
+              console.log(_this.options.video.url)
+              console.log(dataMv.data.brs[1080])
+            }
+          })
+          .catch(function (err) {
+            console.log(err)
+          })
       },
       winMin () {
         ipc.send('window-min')
