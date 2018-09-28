@@ -52,7 +52,7 @@
                 <div class="mv-close" @click="closeMvPlayer">
                     <i class="el-icon-close"></i>
                 </div>
-                <d-player class="d-player" @play="play" :options="options"></d-player>
+                <d-player class="d-player" @play="play" :options="options" ref="player"></d-player>
             </div>
         </div>
 
@@ -73,11 +73,16 @@
     created () {
       this.getMovieReleased()
     },
+    mounted () {
+      console.log(this.options.video.url)
+      this.player = this.$refs.player.dp
+    },
     data () {
       return {
+        player: null,
         options: {
           video: {
-            url: 'http://vodkgeyttp8.vod.126.net/cloudmusic/2428/mv/f9fc/19797ae5a5ec9849a0e48a019ec985cc.mp4?wsSecret=a9880eea8d00458c706b000c0effd4d1&wsTime=1538059457',
+            url: 'http://vodkgeyttp8.vod.126.net/cloudmusic/8179/mv/a1e4/eb76d8f5ceaccd6d6008acc486fd0ce8.mp4?wsSecret=8324290c514870efd202e18de74c8d32&wsTime=1538147474',
             pic: 'http://static.smartisanos.cn/pr/img/video/video_03_cc87ce5bdb.jpg'
           },
           autoplay: false,
@@ -111,7 +116,6 @@
           })
       },
       toggleInMvPlayer (mvIndex, mvId) {
-        console.log(mvIndex)
         this.toggleMvPlayer = true
         this.getMvId(mvId)
       },
@@ -125,8 +129,9 @@
             console.log(response)
             let dataMv = response.data
             if (response.status === 200 && dataMv.code === 200) {
-              console.log(_this.options.video.url)
-              console.log(dataMv.data.brs[1080])
+              _this.player.switchVideo({
+                url: dataMv.data.brs[1080]
+              })
             }
           })
           .catch(function (err) {
