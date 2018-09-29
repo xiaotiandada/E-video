@@ -47,6 +47,11 @@
             </el-scrollbar>
         </div>
 
+        <div class="paging">
+            <a href="javascript:;" @click="prevPage">+</a>
+            <a href="javascript:;" @click="nextPage">-</a>
+        </div>
+
         <div class="mv-player" v-show="toggleMvPlayer" @click="closeMvPlayer">
             <div class="mv-player-main" @click.stop="">
                 <div class="mv-close" @click="closeMvPlayer">
@@ -55,6 +60,18 @@
                 <d-player class="d-player" @play="play" :options="options" ref="player"></d-player>
             </div>
         </div>
+
+        <el-dialog
+                title="提示"
+                :visible.sync="dialogVisible"
+                width="30%"
+                :before-close="handleClose">
+                    <span>不能再翻页了哦~</span>
+                    <span slot="footer" class="dialog-footer">
+            <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+          </span>
+        </el-dialog>
+
 
     </div>
 </template>
@@ -79,6 +96,7 @@
     },
     data () {
       return {
+        dialogVisible: false,
         player: null,
         options: {
           video: {
@@ -93,6 +111,7 @@
             }
           ]
         },
+        mvPageIndex: 0,
         mvList: [],
         toggleMvPlayer: false
       }
@@ -101,9 +120,38 @@
       play () {
         console.log('play callback')
       },
+      prevPage () {
+        if (this.mvPageIndex <= 0) {
+          this.dialogVisible = true
+          return false
+        }
+        this.mvPageIndex--
+        this.togglePageMv(this.mvPageIndex)
+      },
+      nextPage () {
+        if (this.mvPageIndex >= 99) {
+          this.dialogVisible = true
+          return false
+        }
+        this.mvPageIndex++
+        this.togglePageMv(this.mvPageIndex)
+      },
+      async togglePageMv (offset = 0) {
+        let _this = this
+        await movieApi.getTopMv(30, offset)
+          .then(function (response) {
+            let dataMv = response.data
+            if (response.status === 200 && dataMv.code === 200) {
+              _this.mvList = dataMv.data
+            }
+          })
+          .catch(function (err) {
+            console.log(err)
+          })
+      },
       async getMovieReleased () {
         let _this = this
-        await movieApi.getTopMv(30, 1)
+        await movieApi.getTopMv(30, 0)
           .then(function (response) {
             let dataMv = response.data
             if (response.status === 200 && dataMv.code === 200) {
@@ -121,6 +169,7 @@
       },
       closeMvPlayer () {
         this.toggleMvPlayer = false
+        this.player.pause()
       },
       getMvId (mvId) {
         let _this = this
@@ -137,6 +186,13 @@
           .catch(function (err) {
             console.log(err)
           })
+      },
+      handleClose (done) {
+        this.$confirm('确认关闭？')
+          .then(_ => {
+            done()
+          })
+          .catch(_ => {})
       },
       winMin () {
         ipc.send('window-min')

@@ -90,6 +90,24 @@ button {
   width: 1100px;
   height: 100%;
   margin: auto;
+  overflow: hidden;
+}
+
+.paging {
+  position: fixed;
+  top: 50px;
+  right: 0;
+  a {
+    display: block;
+    width: 30px;
+    height: 30px;
+    background-color: rgba(232, 60, 60, 1);
+    border-radius: 50%;
+    text-align: center;
+    line-height: 30px;
+    color: #fff;
+    text-decoration: none;
+  }
 }
 
 .music-mv{
