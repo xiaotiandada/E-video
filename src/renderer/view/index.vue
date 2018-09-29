@@ -91,7 +91,6 @@
       this.getMovieReleased()
     },
     mounted () {
-      console.log(this.options.video.url)
       this.player = this.$refs.player.dp
     },
     data () {
@@ -109,7 +108,17 @@
               text: 'GitHub',
               link: 'https://github.com/xiaotiandada'
             }
-          ]
+          ],
+          danmaku: {
+            id: '5436712',
+            api: 'http://123.207.60.132:3000/comment/mv?id=5436712',
+            token: 'tokendemo',
+            maximum: 1000,
+            addition: ['http://123.207.60.132:3000/comment/mv?id=5436712'],
+            user: 'DIYgod',
+            bottom: '15%',
+            unlimited: true
+          }
         },
         mvPageIndex: 0,
         mvList: [],
@@ -118,7 +127,14 @@
     },
     methods: {
       play () {
-        console.log('play callback')
+        // console.log('play callback')
+        this.player.danmaku.send({
+          text: 'dplayer is amazing11111111',
+          color: '#b7daff',
+          type: 'right'
+        }, function () {
+          console.log('success')
+        })
       },
       prevPage () {
         if (this.mvPageIndex <= 0) {
@@ -156,7 +172,7 @@
             let dataMv = response.data
             if (response.status === 200 && dataMv.code === 200) {
               _this.mvList = dataMv.data
-              console.log(_this.mvList)
+              // console.log(_this.mvList)
             }
           })
           .catch(function (err) {
@@ -175,13 +191,23 @@
         let _this = this
         movieApi.getMvId(mvId)
           .then(function (response) {
-            console.log(response)
+            // console.log(response)
             let dataMv = response.data
             if (response.status === 200 && dataMv.code === 200) {
               _this.player.switchVideo({
                 url: dataMv.data.brs[1080] || dataMv.data.brs[720] || dataMv.data.brs[480] || dataMv.data.brs[240]
               })
+              _this.getMvComments(dataMv.data.id)
             }
+          })
+          .catch(function (err) {
+            console.log(err)
+          })
+      },
+      async getMvComments (id) {
+        await movieApi.getMvComments(id)
+          .then(function (response) {
+
           })
           .catch(function (err) {
             console.log(err)

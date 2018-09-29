@@ -12,5 +12,8 @@ export default {
   },
   getMvId (id) {
     return Api().get(`/mv?mvid=${id}`)
+  },
+  getMvComments (id) {
+    return Api().get(`/comment/mv?id=${id}`)
   }
 }
