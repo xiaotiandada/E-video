@@ -18,6 +18,7 @@
                 </a>
             </div>
         </div>
+        
         <div class="main">
             <el-scrollbar style="height: 100%;">
                 <div class="main-mv">
@@ -81,6 +82,7 @@
   import 'vue-dplayer/dist/vue-dplayer.css'
 
   import movieApi from '@/service/movieApi'
+  import ScrollReveal from 'scrollreveal'
 
   const {ipcRenderer: ipc} = require('electron')
   export default {
@@ -92,6 +94,9 @@
     },
     mounted () {
       this.player = this.$refs.player.dp
+      ScrollReveal().reveal('.headline')
+    },
+    watch: {
     },
     data () {
       return {
@@ -172,7 +177,6 @@
             let dataMv = response.data
             if (response.status === 200 && dataMv.code === 200) {
               _this.mvList = dataMv.data
-              // console.log(_this.mvList)
             }
           })
           .catch(function (err) {
