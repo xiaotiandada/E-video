@@ -179,7 +179,7 @@
             let dataMv = response.data
             if (response.status === 200 && dataMv.code === 200) {
               _this.player.switchVideo({
-                url: dataMv.data.brs[1080]
+                url: dataMv.data.brs[1080] || dataMv.data.brs[720] || dataMv.data.brs[480] || dataMv.data.brs[240]
               })
             }
           })

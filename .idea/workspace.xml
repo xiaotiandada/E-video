@@ -7,7 +7,6 @@
   <component name="ChangeListManager">
     <list default="true" id="fb2ee3ab-4c66-4c0e-a6b0-a4791ba00879" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/renderer/assets/scss/page.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/assets/scss/page.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/renderer/view/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/view/index.vue" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -52,7 +51,7 @@
           <entry key="JavaScript" value="694" />
           <entry key="Markdown" value="6" />
           <entry key="SCSS" value="2045" />
-          <entry key="Vue.js" value="3883" />
+          <entry key="Vue.js" value="3938" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -76,7 +75,7 @@
           <entry key="js" value="693" />
           <entry key="md" value="6" />
           <entry key="scss" value="2045" />
-          <entry key="vue" value="3884" />
+          <entry key="vue" value="3939" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
@@ -102,8 +101,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/renderer/view/index.vue">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="151">
-                  <caret line="140" column="14" selection-start-line="140" selection-start-column="14" selection-end-line="140" selection-end-column="14" />
+                <state relative-caret-position="364">
+                  <caret line="181" column="113" selection-start-line="181" selection-start-column="113" selection-end-line="181" selection-end-column="113" />
                   <folding>
                     <element signature="n#style#0;n#el-scrollbar#0;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
                     <element signature="n#div#0;n#div#0;n#el-scrollbar#0;n#div#1;n#div#0;n#template#0;n#!!top" />
@@ -394,12 +393,12 @@
       <workItem from="1538057670329" duration="2222000" />
       <workItem from="1538142871903" duration="2614000" />
       <workItem from="1538209630668" duration="48000" />
-      <workItem from="1538231593886" duration="2942000" />
+      <workItem from="1538231593886" duration="3324000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="64184000" />
+    <option name="totallyTimeSpent" value="64566000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
@@ -589,8 +588,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/renderer/view/index.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="151">
-          <caret line="140" column="14" selection-start-line="140" selection-start-column="14" selection-end-line="140" selection-end-column="14" />
+        <state relative-caret-position="364">
+          <caret line="181" column="113" selection-start-line="181" selection-start-column="113" selection-end-line="181" selection-end-column="113" />
           <folding>
             <element signature="n#style#0;n#el-scrollbar#0;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
             <element signature="n#div#0;n#div#0;n#el-scrollbar#0;n#div#1;n#div#0;n#template#0;n#!!top" />
