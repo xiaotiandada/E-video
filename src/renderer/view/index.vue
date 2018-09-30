@@ -82,7 +82,6 @@
   import 'vue-dplayer/dist/vue-dplayer.css'
 
   import movieApi from '@/service/movieApi'
-  import ScrollReveal from 'scrollreveal'
 
   const {ipcRenderer: ipc} = require('electron')
   export default {
@@ -94,7 +93,6 @@
     },
     mounted () {
       this.player = this.$refs.player.dp
-      ScrollReveal().reveal('.headline')
     },
     watch: {
     },
