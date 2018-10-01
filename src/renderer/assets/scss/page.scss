@@ -94,19 +94,20 @@ button {
 }
 
 .paging {
-  position: fixed;
-  top: 50px;
-  right: 0;
+  width: 100%;
+  text-align: center;
+  padding: 20px 0;
   a {
-    display: block;
-    width: 30px;
-    height: 30px;
-    background-color: rgba(232, 60, 60, 1);
-    border-radius: 50%;
+    display: inline-block;
+    margin: 0 4px;
+    padding: 4px 16px;
+    background-color: #e83c3c;
+    border-radius: 3px;
     text-align: center;
-    line-height: 30px;
+    line-height: 24px;
     color: #fff;
     text-decoration: none;
+    font-size: 12px;
   }
 }
 

@@ -6,6 +6,7 @@
                 <img src="../assets/img/logo.png" alt="logo">
                 <h1>网易云Mv</h1>
             </div>
+           
             <div class="status">
                 <a href="javascript:void (0);" @click="winMin">
                     <i class="el-icon-minus"></i>
@@ -45,12 +46,16 @@
                         </div>
                     </div>
                 </div>
-            </el-scrollbar>
-        </div>
 
-        <div class="paging">
-            <a href="javascript:;" @click="prevPage">+</a>
-            <a href="javascript:;" @click="nextPage">-</a>
+                <div class="paging">
+                  <a href="javascript:;" @click="frontPage">回到首页</a>
+                  <a href="javascript:;" @click="prevPage">上一页</a>
+                  <a href="javascript:;" @click="prevPage">{{mvPageIndex+1}}</a>
+                  <a href="javascript:;" @click="nextPage">下一页</a>
+                  <a href="javascript:;" @click="backPage">回到尾页</a>
+                </div>
+            </el-scrollbar>
+             
         </div>
 
         <div class="mv-player" v-show="toggleMvPlayer" @click="closeMvPlayer">
@@ -124,6 +129,14 @@ const {ipcRenderer: ipc} = require('electron')
     methods: {
       play () {
         this.transformComments(this.danmaku)
+      },
+      frontPage () {
+        this.togglePageMv(0)
+        this.mvPageIndex = 0
+      },
+      backPage () {
+        this.togglePageMv(99)
+        this.mvPageIndex = 99
       },
       prevPage () {
         if (this.mvPageIndex <= 0) {
