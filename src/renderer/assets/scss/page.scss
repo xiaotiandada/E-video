@@ -220,10 +220,10 @@ button {
   }
   .mv-player-main{
     position: absolute;
+    width: 900px;
     top: 50%;
     left: 50%;
-    width: 900px;
-    margin: -250px 0 0 -450px;
+    transform: translate3d(-50%, -50%, 0)
   }
   .d-player{
     width: 100%;

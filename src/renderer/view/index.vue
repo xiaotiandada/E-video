@@ -83,7 +83,9 @@
 
   import movieApi from '@/service/movieApi'
 
-  const {ipcRenderer: ipc} = require('electron')
+  import _ from 'lodash'
+
+const {ipcRenderer: ipc} = require('electron')
   export default {
     components: {
       'd-player': VueDPlayer
@@ -94,16 +96,15 @@
     mounted () {
       this.player = this.$refs.player.dp
     },
-    watch: {
-    },
+    watch: {},
     data () {
       return {
         dialogVisible: false,
         player: null,
         options: {
           video: {
-            url: 'http://vodkgeyttp8.vod.126.net/cloudmusic/8179/mv/a1e4/eb76d8f5ceaccd6d6008acc486fd0ce8.mp4?wsSecret=8324290c514870efd202e18de74c8d32&wsTime=1538147474',
-            pic: 'http://static.smartisanos.cn/pr/img/video/video_03_cc87ce5bdb.jpg'
+            url: 'https://moeplayer.b0.upaiyun.com/dplayer/flowerdance.mp4',
+            pic: 'https://moeplayer.b0.upaiyun.com/dplayer/flowerdance.jpg'
           },
           autoplay: false,
           contextmenu: [
@@ -112,32 +113,17 @@
               link: 'https://github.com/xiaotiandada'
             }
           ],
-          danmaku: {
-            id: '5436712',
-            api: 'http://123.207.60.132:3000/comment/mv?id=5436712',
-            token: 'tokendemo',
-            maximum: 1000,
-            addition: ['http://123.207.60.132:3000/comment/mv?id=5436712'],
-            user: 'DIYgod',
-            bottom: '15%',
-            unlimited: true
-          }
+          danmaku: true
         },
         mvPageIndex: 0,
         mvList: [],
+        danmaku: [],
         toggleMvPlayer: false
       }
     },
     methods: {
       play () {
-        // console.log('play callback')
-        this.player.danmaku.send({
-          text: 'dplayer is amazing11111111',
-          color: '#b7daff',
-          type: 'right'
-        }, function () {
-          console.log('success')
-        })
+        this.transformComments(this.danmaku)
       },
       prevPage () {
         if (this.mvPageIndex <= 0) {
@@ -193,7 +179,6 @@
         let _this = this
         movieApi.getMvId(mvId)
           .then(function (response) {
-            // console.log(response)
             let dataMv = response.data
             if (response.status === 200 && dataMv.code === 200) {
               _this.player.switchVideo({
@@ -207,13 +192,44 @@
           })
       },
       async getMvComments (id) {
+        let _this = this
         await movieApi.getMvComments(id)
           .then(function (response) {
-
+            let commentsData = response.data
+            if (response.status === 200 && commentsData.code === 200) {
+              _this.danmaku = commentsData.comments
+            }
           })
           .catch(function (err) {
             console.log(err)
           })
+      },
+      transformComments (commentsArr) {
+        let _this = this
+        let len = commentsArr.length
+        let i = 0
+        let comment = {
+          text: 'xiaotian',
+          color: '#fff',
+          type: 'right'
+        }
+        let type = ['top', 'right', 'bottom']
+        function pushComments () {
+          let random = _.random(0, 3)
+          comment.text = commentsArr[i].content
+          comment.color = `rgb(${_.random(0, 255)}, ${_.random(0, 255)}, ${_.random(0, 255)})`
+          comment.type = `${type[random]}`
+          i++
+          _this.player.danmaku.draw(comment)
+          if (i >= len) {
+            return false
+          } else {
+            _.delay(function () {
+              pushComments()
+            }, _.random(800, 2000))
+          }
+        }
+        pushComments()
       },
       handleClose (done) {
         this.$confirm('确认关闭？')
