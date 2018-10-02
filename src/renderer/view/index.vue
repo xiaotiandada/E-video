@@ -127,9 +127,7 @@ const {ipcRenderer: ipc} = require('electron')
       }
     },
     methods: {
-      play () {
-        this.transformComments(this.danmaku)
-      },
+      play () {},
       frontPage () {
         this.togglePageMv(0)
         this.mvPageIndex = 0
@@ -211,6 +209,7 @@ const {ipcRenderer: ipc} = require('electron')
             let commentsData = response.data
             if (response.status === 200 && commentsData.code === 200) {
               _this.danmaku = commentsData.comments
+              _this.transformComments(_this.danmaku)
             }
           })
           .catch(function (err) {
