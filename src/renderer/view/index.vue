@@ -87,6 +87,7 @@
   import 'vue-dplayer/dist/vue-dplayer.css'
 
   import movieApi from '@/service/movieApi'
+  import cancelToken from '@/common/request/axios.cancel'
 
   import _ from 'lodash'
 
@@ -123,7 +124,8 @@ const {ipcRenderer: ipc} = require('electron')
         mvPageIndex: 0,
         mvList: [],
         danmaku: [],
-        toggleMvPlayer: false
+        toggleMvPlayer: false,
+        source: false
       }
     },
     methods: {
@@ -141,6 +143,7 @@ const {ipcRenderer: ipc} = require('electron')
           this.dialogVisible = true
           return false
         }
+
         this.mvPageIndex--
         this.togglePageMv(this.mvPageIndex)
       },
@@ -149,12 +152,22 @@ const {ipcRenderer: ipc} = require('electron')
           this.dialogVisible = true
           return false
         }
+
         this.mvPageIndex++
         this.togglePageMv(this.mvPageIndex)
       },
       async togglePageMv (offset = 0) {
+        // send request prehandle
+        this.abortRequest()
+
         let _this = this
-        await movieApi.getTopMv(30, offset)
+
+        const query = {
+          limit: 30,
+          offset,
+          cancelToken: this.createCancelToken()
+        }
+        await movieApi.getTopMv(query)
           .then(function (response) {
             let dataMv = response.data
             if (response.status === 200 && dataMv.code === 200) {
@@ -177,6 +190,16 @@ const {ipcRenderer: ipc} = require('electron')
           .catch(function (err) {
             console.log(err)
           })
+      },
+      // abort axios request handle
+      abortRequest () {
+        this.source && this.source.cancel()
+      },
+      // create axios request cancel token
+      createCancelToken () {
+        const source = cancelToken()
+        this.source = source
+        return source.token
       },
       toggleInMvPlayer (mvIndex, mvId) {
         this.toggleMvPlayer = true
