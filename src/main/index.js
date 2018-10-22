@@ -1,7 +1,7 @@
 'use strict'
 
 import { app, BrowserWindow } from 'electron'
-
+const ipcMain = require('electron').ipcMain
 /**
  * Set `__static` path to static files in production
  * https://simulatedgreg.gitbooks.io/electron-vue/content/en/using-static-assets.html
@@ -20,9 +20,10 @@ function createWindow () {
    * Initial window options
    */
   mainWindow = new BrowserWindow({
-    height: 563,
+    height: 710,
+    width: 1200,
     useContentSize: true,
-    width: 1000
+    frame: false
   })
 
   mainWindow.loadURL(winURL)
@@ -46,6 +47,22 @@ app.on('activate', () => {
   }
 })
 
+/**
+ * 模拟 最小 放大 还原 关闭 事件
+ */
+ipcMain.on('window-min', () => {
+  mainWindow.minimize()
+})
+ipcMain.on('win-enlarge-or-narrow', () => {
+  if (mainWindow.isMaximized()) {
+    mainWindow.unmaximize()
+  } else {
+    mainWindow.maximize()
+  }
+})
+ipcMain.on('window-close', () => {
+  mainWindow.close()
+})
 /**
  * Auto Updater
  *
